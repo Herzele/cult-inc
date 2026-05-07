@@ -15,6 +15,34 @@ The player feels the seductive pull of accumulating belief, loyalty, and influen
 3. **Narrative Momentum** — Each prestige cycle recontextualizes your cult's history and mythology.
 4. **Emergent Strategy** — No single optimal path. Player archetypes: isolationist communes, media cults, doomsday sects, wellness empires.
 
+## Divine Entities System
+
+Entities are not chosen by the player — they choose the player based on accumulated actions and playstyle.
+
+**Alignment axes** — every entity sits somewhere on two independent axes:
+- Malefic ↔ Benevolent
+- Chaos ↔ Order
+
+**Power types:**
+- *Passive unlocks* — permanent bonuses while the entity is present
+- *Active abilities* — triggered by the player at a cost
+- *Situational events* — positive or negative occurrences inflicted on the player by the entity, outside their control
+
+**Heat relationship** — entities have strong opinions about cult size. Some demand a small, devoted flock (low Heat preferred); others require massive public visibility and actively push the player toward high Heat.
+
+**Progression model (inspired by Hades):**
+- Each prestige run reveals more of an entity's true nature and motivations
+- Lore depth accumulates across runs without locking the player out of exploring other entities
+- New entities unlock progressively at prestige milestones
+
+**Phase constraints:**
+- Phase 1: no entities (core loop only)
+- Phase 2: one entity at a time, full 4-axis roster introduced gradually
+- Phase 3: cross-entity combination mechanics unlock with prestige level
+- Entity conflict mechanics deferred to a later phase
+
+---
+
 ## Tech Stack
 
 | Layer | Choice |
@@ -36,7 +64,9 @@ The player feels the seductive pull of accumulating belief, loyalty, and influen
 
 - [ ] Playable prototype (core loop) — Phase 1
 - [ ] First prestige mechanic — Phase 2
+- [ ] Divine entity system (Phase 2) — one entity, 4 axes, passive/active/situational powers
 - [ ] Three distinct cult archetypes — Phase 3
+- [ ] Multi-entity combinations (Phase 3)
 - [ ] Save/load + cloud sync — Phase 3
 - [ ] Soft launch / public playtest — Phase 4
 
