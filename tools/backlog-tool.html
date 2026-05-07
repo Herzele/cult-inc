@@ -4,22 +4,15 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <title>🕯️ Cult Inc — Backlog</title>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
       --bg: #0d0d0f; --surface: #13131a; --border: #1e1e28;
-      --accent: #c9a96e; --accent-dim: rgba(201,169,110,0.12);
-      --text: #e8e0d0; --muted: #666;
+      --accent: #c9a96e; --text: #e8e0d0; --muted: #666;
       --danger: #c97e7e; --success: #7ec97e; --radius: 12px;
     }
-    body {
-      background: var(--bg); color: var(--text);
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      min-height: 100vh; display: flex; flex-direction: column;
-      max-width: 520px; margin: 0 auto;
-    }
+    body { background: var(--bg); color: var(--text); font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; min-height: 100vh; display: flex; flex-direction: column; max-width: 520px; margin: 0 auto; }
     .screen { flex: 1; display: none; flex-direction: column; padding: 24px 20px; min-height: 100vh; }
     .screen.active { display: flex; }
     .loading-screen { display: none; align-items: center; justify-content: center; flex-direction: column; gap: 20px; min-height: 100vh; }
@@ -31,29 +24,23 @@
     .subtitle { font-size: 14px; color: var(--muted); margin-bottom: 32px; line-height: 1.6; }
     .field { margin-bottom: 16px; }
     label { display: block; font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; }
-    input, textarea {
-      width: 100%; background: var(--surface); border: 1px solid var(--border);
-      border-radius: var(--radius); color: var(--text); font-size: 16px;
-      padding: 14px 16px; outline: none; font-family: inherit; transition: border-color 0.2s;
-    }
+    input, textarea { width: 100%; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); color: var(--text); font-size: 16px; padding: 14px 16px; outline: none; font-family: inherit; transition: border-color 0.2s; }
     input:focus, textarea:focus { border-color: var(--accent); }
     input::placeholder, textarea::placeholder { color: var(--muted); }
-    textarea { min-height: 150px; resize: vertical; line-height: 1.6; }
-    textarea.mono { min-height: 340px; font-family: 'SF Mono', 'Courier New', monospace; font-size: 13px; line-height: 1.7; }
-    .btn { width: 100%; padding: 16px; border-radius: var(--radius); font-size: 16px; font-weight: 500; cursor: pointer; border: none; transition: opacity 0.2s; margin-top: 8px; }
+    textarea { min-height: 160px; resize: vertical; line-height: 1.6; }
+    .btn { width: 100%; padding: 16px; border-radius: var(--radius); font-size: 16px; font-weight: 500; cursor: pointer; border: none; margin-top: 8px; }
     .btn-primary { background: var(--accent); color: #1a1008; }
-    .btn-primary:disabled { opacity: 0.4; cursor: not-allowed; }
     .btn-secondary { background: var(--surface); color: var(--text); border: 1px solid var(--border); }
     .error-msg { background: rgba(201,126,126,0.1); border: 1px solid rgba(201,126,126,0.3); border-radius: 8px; padding: 12px 16px; font-size: 13px; color: var(--danger); margin-bottom: 16px; display: none; line-height: 1.5; }
     .error-msg.visible { display: block; }
     .hint { font-size: 12px; color: var(--muted); margin-top: 6px; line-height: 1.5; }
     .spacer { flex: 1; }
     .char-count { text-align: right; font-size: 11px; color: var(--muted); margin-top: 6px; }
-    .feat-badge { display: inline-block; background: var(--accent-dim); color: var(--accent); border: 1px solid rgba(201,169,110,0.3); border-radius: 6px; padding: 4px 12px; font-size: 13px; font-family: monospace; margin-bottom: 16px; }
     .success-icon { font-size: 64px; text-align: center; margin: 40px 0 24px; }
     .spinner { width: 40px; height: 40px; border: 2px solid var(--border); border-top-color: var(--accent); border-radius: 50%; animation: spin 0.8s linear infinite; }
     @keyframes spin { to { transform: rotate(360deg); } }
     .loading-text { font-size: 14px; color: var(--muted); }
+    .info-box { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 12px 16px; font-size: 13px; color: var(--muted); margin-bottom: 24px; line-height: 1.6; }
   </style>
 </head>
 <body>
@@ -73,14 +60,13 @@
     <input type="text" id="input-repo" placeholder="cult-inc" autocorrect="off" autocapitalize="off">
   </div>
   <div class="field">
-    <label>GitHub Token</label>
-    <input type="password" id="input-github-token" placeholder="ghp_xxxxxxxxxxxx">
-    <p class="hint">GitHub → Settings → Developer settings → Personal access tokens → Fine-grained → repo contents read+write</p>
+    <label>Branche</label>
+    <input type="text" id="input-branch" placeholder="master" autocorrect="off" autocapitalize="off">
   </div>
   <div class="field">
-    <label>Clé API Anthropic</label>
-    <input type="password" id="input-anthropic-key" placeholder="sk-ant-xxxxxxxxxxxx">
-    <p class="hint">console.anthropic.com → API Keys</p>
+    <label>GitHub Token</label>
+    <input type="password" id="input-github-token" placeholder="ghp_xxxxxxxxxxxx">
+    <p class="hint">GitHub → Settings → Developer settings → Personal access tokens → Contents : Read & write</p>
   </div>
   <div class="spacer"></div>
   <button class="btn btn-primary" onclick="saveSetup()">Enregistrer et démarrer</button>
@@ -93,38 +79,20 @@
     <button class="icon-btn" onclick="showSetup()">⚙️</button>
   </div>
   <h1>Nouvelle idée</h1>
-  <p class="subtitle">Décris ta feature en quelques mots. Claude se charge du formatage.</p>
+  <p class="subtitle">Décris ta feature. Elle sera formatée par Claude Code à la prochaine session.</p>
   <div id="main-error" class="error-msg"></div>
   <div class="field">
     <textarea id="input-idea" placeholder="ex: un système de trahison entre fidèles qui génère de l'influence mais augmente le Heat..." oninput="updateCharCount()" maxlength="1000"></textarea>
     <div class="char-count"><span id="char-count">0</span> / 1000</div>
   </div>
   <div class="spacer"></div>
-  <button class="btn btn-primary" id="btn-submit" onclick="handleSubmit()">✦ Transformer en feature</button>
+  <button class="btn btn-primary" onclick="handleSubmit()">✦ Ajouter au backlog</button>
 </div>
 
 <!-- LOADING -->
 <div id="screen-loading" class="loading-screen">
   <div class="spinner"></div>
-  <div class="loading-text" id="loading-text">Chargement...</div>
-</div>
-
-<!-- PREVIEW -->
-<div id="screen-preview" class="screen">
-  <div class="header">
-    <span class="logo">🕯️ Cult Inc</span>
-    <button class="icon-btn" onclick="showMain()">✕</button>
-  </div>
-  <h1>Vérifier</h1>
-  <div id="preview-feat-badge" class="feat-badge"></div>
-  <div id="preview-error" class="error-msg"></div>
-  <div class="field">
-    <label>Entrée générée — modifiable avant ajout</label>
-    <textarea class="mono" id="preview-textarea"></textarea>
-  </div>
-  <div class="spacer"></div>
-  <button class="btn btn-primary" onclick="handleConfirm()">Ajouter au backlog</button>
-  <button class="btn btn-secondary" onclick="showMain()">Retour</button>
+  <div class="loading-text">Envoi sur GitHub...</div>
 </div>
 
 <!-- SUCCESS -->
@@ -133,35 +101,34 @@
   <div class="spacer"></div>
   <div class="success-icon">🕯️</div>
   <h1 style="text-align:center">Ajouté !</h1>
-  <p class="subtitle" style="text-align:center;margin-top:8px" id="success-msg"></p>
+  <p class="subtitle" style="text-align:center;margin-top:8px">Idée dans le backlog. Claude Code la formatera à la prochaine session.</p>
   <div class="spacer"></div>
   <button class="btn btn-primary" onclick="showMain()">Nouvelle idée</button>
   <button class="btn btn-secondary" onclick="openGitHub()">Voir sur GitHub</button>
 </div>
 
 <script>
-  const STORAGE_KEY = 'cult-inc-backlog-config';
+  const KEY = 'cult-inc-config-v2';
   let config = {};
-  let backlogContent = '';
   let backlogSha = '';
-  let featId = '';
+  let backlogContent = '';
 
   function loadConfig() {
-    try { const r = localStorage.getItem(STORAGE_KEY); if (r) config = JSON.parse(r); } catch(e) {}
+    try { const r = localStorage.getItem(KEY); if (r) config = JSON.parse(r); } catch(e) {}
   }
 
   function saveSetup() {
     const owner = v('input-owner'), repo = v('input-repo'),
-          gh = v('input-github-token'), ant = v('input-anthropic-key');
-    if (!owner || !repo || !gh || !ant) { showErr('setup-error', 'Tous les champs sont requis.'); return; }
-    config = { owner, repo, githubToken: gh, anthropicKey: ant };
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(config));
+          branch = v('input-branch') || 'master', gh = v('input-github-token');
+    if (!owner || !repo || !gh) { showErr('setup-error', 'Pseudo, repo et token sont requis.'); return; }
+    config = { owner, repo, branch, githubToken: gh };
+    localStorage.setItem(KEY, JSON.stringify(config));
     showMain();
   }
 
   function showSetup() {
     set('input-owner', config.owner||''); set('input-repo', config.repo||'');
-    set('input-github-token', config.githubToken||''); set('input-anthropic-key', config.anthropicKey||'');
+    set('input-branch', config.branch||'master'); set('input-github-token', config.githubToken||'');
     show('screen-setup');
   }
 
@@ -180,119 +147,72 @@
   function showErr(id, msg) { const e = document.getElementById(id); e.textContent = msg; e.classList.add('visible'); }
   function hideErr(id) { document.getElementById(id).classList.remove('visible'); }
   function updateCharCount() { document.getElementById('char-count').textContent = document.getElementById('input-idea').value.length; }
-  function openGitHub() { window.open(`https://github.com/${config.owner}/${config.repo}/blob/master/docs/BACKLOG.md`,'_blank'); }
-
-  function getNextFeatId(content) {
-    const nums = (content.match(/FEAT-(\d+)/g)||[]).map(m => parseInt(m.slice(5)));
-    return 'FEAT-' + String((nums.length ? Math.max(...nums) : 0) + 1).padStart(3,'0');
-  }
-
+  function openGitHub() { window.open(`https://github.com/${config.owner}/${config.repo}/blob/${config.branch}/docs/BACKLOG.md`,'_blank'); }
   function b64encode(str) { return btoa(unescape(encodeURIComponent(str))); }
   function b64decode(str) { return decodeURIComponent(escape(atob(str))); }
 
+  function formatEntry(idea) {
+    const now = new Date();
+    const date = now.toLocaleDateString('fr-FR', { day:'2-digit', month:'2-digit', year:'numeric' });
+    const time = now.toLocaleTimeString('fr-FR', { hour:'2-digit', minute:'2-digit' });
+    return `### 💡 À TRAITER — ${date} ${time}\n${idea}`;
+  }
+
   async function fetchBacklog() {
     const res = await fetch(
-      `https://api.github.com/repos/${config.owner}/${config.repo}/contents/docs/BACKLOG.md`,
+      `https://api.github.com/repos/${config.owner}/${config.repo}/contents/docs/BACKLOG.md?ref=${config.branch}`,
       { headers: { 'Authorization': `token ${config.githubToken}`, 'Accept': 'application/vnd.github.v3+json' } }
     );
-    if (!res.ok) throw new Error(`GitHub ${res.status} — vérifie ton token et le nom du repo`);
+    if (!res.ok) throw new Error(`GitHub ${res.status} — vérifie ton token, le nom du repo et la branche`);
     const d = await res.json();
     backlogSha = d.sha;
     return b64decode(d.content.replace(/\n/g,''));
   }
 
-  async function pushBacklog(entry) {
+  async function pushBacklog(idea) {
+    const entry = formatEntry(idea);
     let content = backlogContent;
-    const idx = content.indexOf('## Icebox');
-    content = idx !== -1
-      ? content.slice(0,idx).trimEnd() + '\n\n' + entry + '\n\n' + content.slice(idx)
-      : content.trimEnd() + '\n\n---\n\n' + entry;
+
+    const marker = '## 💡 À traiter';
+    if (content.includes(marker)) {
+      content = content.replace(marker, `${marker}\n\n${entry}\n`);
+    } else {
+      content = content.trimEnd() + `\n\n---\n\n${marker}\n\n${entry}\n`;
+    }
+
     const res = await fetch(
       `https://api.github.com/repos/${config.owner}/${config.repo}/contents/docs/BACKLOG.md`,
-      { method:'PUT', headers:{'Authorization':`token ${config.githubToken}`,'Content-Type':'application/json'},
-        body: JSON.stringify({ message:`feat: add ${featId} to backlog via mobile tool`, content: b64encode(content), sha: backlogSha }) }
+      {
+        method: 'PUT',
+        headers: { 'Authorization': `token ${config.githubToken}`, 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          message: 'feat: add raw idea to backlog via mobile tool',
+          content: b64encode(content),
+          sha: backlogSha,
+          branch: config.branch
+        })
+      }
     );
-    if (!res.ok) { const e = await res.json(); throw new Error(e.message||`GitHub push ${res.status}`); }
-  }
-
-  async function callClaude(idea, fid) {
-    const res = await fetch('https://api.anthropic.com/v1/messages', {
-      method:'POST',
-      headers:{
-        'Content-Type':'application/json',
-        'x-api-key': config.anthropicKey,
-        'anthropic-version':'2023-06-01',
-        'anthropic-dangerous-direct-browser-access':'true'
-      },
-      body: JSON.stringify({
-        model:'claude-sonnet-4-20250514', max_tokens:1000,
-        messages:[{ role:'user', content:`Tu es l'assistant backlog de "Cult Inc", un jeu incrémental de gestion de culte. Le joueur fait grossir son culte de quelques croyants jusqu'à un empire mondial. Mécaniques clés : Heat (contrainte de visibilité), Entités divines qui choisissent le joueur selon ses actions (axes Maléfique/Bienveillant/Chaos/Ordre), prestige inspiré de Hades, archetypes de cultes.
-
-Transforme cette idée brute en entrée BACKLOG.md formatée ainsi :
-
-### 💡 ${fid} — [Nom de la feature]
-**Statut**: 💡 Idée  
-**Priorité**: [Haute / Moyenne / Basse]
-
-#### Description
-[2-3 phrases claires en français]
-
-#### User Story
-En tant que joueur, je veux [action], afin de [bénéfice].
-
-#### Critères d'acceptation
-- [ ] CA1 : ...
-- [ ] CA2 : ...
-- [ ] CA3 : ...
-
-#### Notes
-[Notes de design, dépendances, questions ouvertes]
-
----
-
-Idée brute : "${idea}"
-
-Réponds UNIQUEMENT avec l'entrée formatée, sans aucun texte avant ou après.` }]
-      })
-    });
-    if (!res.ok) { const e = await res.json(); throw new Error(e.error?.message||`Anthropic ${res.status}`); }
-    const d = await res.json();
-    return d.content[0].text;
+    if (!res.ok) { const e = await res.json(); throw new Error(e.message || `GitHub push ${res.status}`); }
   }
 
   async function handleSubmit() {
     const idea = v('input-idea');
     if (!idea) return;
     hideErr('main-error');
-    try {
-      document.getElementById('loading-text').textContent = 'Lecture du backlog...';
-      show('screen-loading');
-      backlogContent = await fetchBacklog();
-      featId = getNextFeatId(backlogContent);
-      document.getElementById('loading-text').textContent = `Claude génère ${featId}...`;
-      const generated = await callClaude(idea, featId);
-      document.getElementById('preview-feat-badge').textContent = featId;
-      document.getElementById('preview-textarea').value = generated;
-      hideErr('preview-error');
-      show('screen-preview');
-    } catch(e) { show('screen-main'); showErr('main-error', e.message); }
-  }
-
-  async function handleConfirm() {
-    const entry = document.getElementById('preview-textarea').value.trim();
-    if (!entry) return;
-    hideErr('preview-error');
-    document.getElementById('loading-text').textContent = 'Envoi sur GitHub...';
     show('screen-loading');
     try {
-      await pushBacklog(entry);
-      document.getElementById('success-msg').textContent = `${featId} ajouté à docs/BACKLOG.md`;
+      backlogContent = await fetchBacklog();
+      await pushBacklog(idea);
       show('screen-success');
-    } catch(e) { show('screen-preview'); showErr('preview-error', e.message); }
+    } catch(e) {
+      show('screen-main');
+      showErr('main-error', e.message);
+    }
   }
 
   loadConfig();
-  if (config.owner && config.repo && config.githubToken && config.anthropicKey) showMain();
+  if (config.owner && config.repo && config.githubToken) showMain();
   else showSetup();
 </script>
 </body>
