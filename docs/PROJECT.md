@@ -2,7 +2,7 @@
 
 ## Concept
 
-Cult Inc is a browser-based incremental idle game where you start as a charismatic nobody and grow your cult from a handful of believers into a globe-spanning spiritual empire. You manage followers, resources, rituals, and rival factions — all while hiding your true power from society.
+Cult Inc is a browser-based incremental idle game where you start as a charismatic nobody and grow your cult from a handful of followers into a globe-spanning spiritual empire. You manage followers, resources, rituals, and rival factions — all while hiding your true power from society.
 
 ## Core Fantasy
 
@@ -53,12 +53,14 @@ Entities are not chosen by the player — they choose the player based on accumu
 | Styling | Tailwind CSS v4 |
 | Unit Tests | Vitest |
 | E2E Tests | Playwright |
+| Mobile packaging | Capacitor (web app → APK Android) |
+| Quality gates | ESLint + Husky + lint-staged (`--max-warnings 0`) |
 
 ## Key Personas
 
-- **The Lurker** — plays passively, returns every few hours to collect
-- **The Optimizer** — wants every upgrade timed, reads the balance sheet
-- **The Lore Enjoyer** — reads every event text, wants narrative payoff
+- **The Lurker** — plays passively, returns every few hours to collect. Cible des sessions courtes (cf. `PACING.md > Session Length Targets > Quick check-in`).
+- **The Optimizer** — wants every upgrade timed, reads the balance sheet. Cible des sessions profondes (`Deep session`).
+- **The Lore Enjoyer** — reads every event text, wants narrative payoff. Cible des sessions casuelles (`Casual session`) où les événements ont le temps de se dérouler.
 
 ## Project Goals
 

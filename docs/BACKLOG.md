@@ -4,6 +4,8 @@ Items are loosely ordered by priority within each section. Move items to CHANGEL
 
 Status icons: 📋 Spec (ready to build) · 💡 Idée (not yet specced) · 🚧 In Progress · ✅ Done
 
+> **Numérotation `FEAT-XXX` :** les IDs sont attribués dans l'ordre de création, pas dans l'ordre de lecture du document. C'est pour ça que les phases ne sont pas strictement croissantes (ex. Phase 2 — Divine Entities = FEAT-037→041, ajouté après Phase 4 = FEAT-028→032). Aucun ID n'est manquant entre 001 et 046.
+
 ---
 
 ## Phase 1 — Core Loop (Prototype)

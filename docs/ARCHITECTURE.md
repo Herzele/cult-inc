@@ -40,7 +40,7 @@ The store is split into slices combined at the root. Each slice owns its state a
 interface GameState {
   // Resources
   belief: number
-  believers: number
+  followers: number
   shelter: number
   heat: number
   doctrine: number
@@ -49,6 +49,7 @@ interface GameState {
   tickCount: number
   lastSaveTime: number
   runCount: number
+  isPremium: boolean // anticipé pour FEAT-046, false par défaut
 
   // Collections
   upgrades: Record<UpgradeId, UpgradeState>
@@ -90,6 +91,12 @@ The game engine runs a `requestAnimationFrame` loop that fires `store.tick(delta
 
 Schema versioning: `saveVersion` field in the save object. Migrations run on load when `saveVersion` is behind `CURRENT_SAVE_VERSION`.
 
+**Stratégie de migration :**
+- Chaque montée de `CURRENT_SAVE_VERSION` est accompagnée d'une fonction `migrate_v{N-1}_to_v{N}(save) → save'` dans `src/game/migrations.ts`.
+- Au load, on applique séquentiellement les migrations de `save.saveVersion` à `CURRENT_SAVE_VERSION`.
+- Une migration est **non destructive par défaut** : si un champ disparaît, on le conserve quand même dans le save sérialisé pendant 1 version (deprecation), puis on le retire à la suivante. Cela protège des rollbacks involontaires.
+- Si le save est plus récent que `CURRENT_SAVE_VERSION` (joueur revenu d'une beta), on refuse le load et on propose un export JSON brut pour le récupérer manuellement.
+
 ---
 
 ## Formulas Module
@@ -99,7 +106,7 @@ All game math lives in `src/game/formulas.ts` as pure functions with no imports 
 ```typescript
 export function recruitCost(n: number, upgrades: UpgradeState): number
 export function beliefPerSecond(state: ResourceState): number
-export function heatPerMinute(believers: number, activeEvents: GameEvent[]): number
+export function heatPerMinute(followers: number, activeEvents: GameEvent[]): number
 export function offlineProgress(bps: number, offlineSeconds: number): number
 ```
 
@@ -133,3 +140,26 @@ export function offlineProgress(bps: number, offlineSeconds: number): number
 | No backend | Reduces complexity for solo dev; localStorage is sufficient for v1 |
 | RAF loop over setInterval | More accurate timing, pauses when tab is hidden |
 | Formulas as pure functions | Enables fast unit tests without store setup |
+
+---
+
+## Zustand — pattern selector côté composants
+
+Les composants ne lisent **jamais** le store entier — toujours via un selector ciblé pour limiter les re-renders.
+
+```typescript
+// ✅ Bon — re-render seulement si belief change
+const belief = useGameStore((s) => s.belief)
+
+// ❌ Mauvais — re-render à chaque tick parce que tout l'objet change de référence
+const state = useGameStore()
+
+// ✅ Multi-champ : utiliser shallow pour comparer field par field
+import { useShallow } from 'zustand/react/shallow'
+const { belief, followers } = useGameStore(useShallow((s) => ({
+  belief: s.belief,
+  followers: s.followers,
+})))
+```
+
+Règle pratique : si un composant n'a besoin que de N valeurs scalaires, écrire N selectors plutôt qu'un selector objet. Le coût d'écriture est compensé par la simplicité de raisonner sur les re-renders.

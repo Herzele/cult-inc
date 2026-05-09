@@ -58,11 +58,13 @@ Maps the intended emotional arc across a full playthrough, from new player to pr
 
 ## Session Length Targets
 
-| Session Type | Length | Content Density |
-|-------------|--------|-----------------|
-| Quick check-in | 2–5 min | Collect offline progress, queue upgrades |
-| Casual session | 20–40 min | Manage heat, see events unfold |
-| Deep session | 2–4 hr | Complete a prestige cycle |
+| Session Type | Length | Content Density | Persona principal |
+|-------------|--------|-----------------|-------------------|
+| Quick check-in | 2–5 min | Collect offline progress, queue upgrades | The Lurker |
+| Casual session | 20–40 min | Manage heat, see events unfold | The Lore Enjoyer |
+| Deep session | 2–4 hr | Complete a prestige cycle | The Optimizer |
+
+Les personas sont définis dans `PROJECT.md > Key Personas`.
 
 ---
 
@@ -82,6 +84,7 @@ Maps the intended emotional arc across a full playthrough, from new player to pr
 
 ## Do Not Do
 
-- Do not gate the first follower behind more than 60 seconds of clicking
-- Do not make prestige feel like punishment — always show the net gain
-- Do not introduce Heat events faster than players can read the explanation
+- **Do not gate the first follower behind more than 60 seconds of clicking.** Concrètement : si `BASE_PREACH × click_multiplier × 60` ne couvre pas le coût du premier follower, retuner les constantes.
+- **Do not make prestige feel like punishment** — always show the net gain. Concrètement : avant de valider une Revelation, l'UI doit montrer le delta `Doctrine actuel + gain estimé` et la liste de ce qui est conservé (cf. `BALANCE.md > Doctrine` et la décision en attente sur le carry-over post-Revelation).
+- **Do not introduce Heat events faster than players can read the explanation.** Concrètement : un événement de Heat doit donner au joueur 2–3 ticks de jeu de marge entre l'apparition et l'effet, comme énoncé dans `BALANCE.md > Tuning principles > "Heat events should be readable"`.
+- **Do not make the Shelter cap silent.** Quand le bouton Recruit est désactivé par le cap, le tooltip doit le dire (cf. `BALANCE.md > Shelter > Cap mechanism`). Un bouton qui ne réagit pas sans explication est l'archétype du bug perçu.
